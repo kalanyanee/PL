@@ -1,0 +1,82 @@
+class Animal {
+    // Constructor
+    Animal() {
+        System.out.println("create animal");
+    }
+
+    // Destructor (ใช้ finalize แทน)
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("delete animal");
+        super.finalize();
+    }
+
+    // Method sound
+    void sound() {
+        System.out.println("animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    // Constructor
+    Dog() {
+        System.out.println("Dog");
+    }
+
+    // Destructor (ใช้ finalize แทน)
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("delete dog");
+        super.finalize();
+    }
+
+    // Override method sound
+    @Override
+    void sound() {
+        System.out.println("dog barks");
+    }
+}
+
+class Cat extends Animal {
+    // Constructor
+    Cat() {
+        System.out.println("Cat");
+    }
+
+    // Destructor (ใช้ finalize แทน)
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("delete cat");
+        super.finalize();
+    }
+
+    // Override method sound
+    @Override
+    void sound() {
+        System.out.println("cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // สร้าง object a ของ class Animal
+        Animal a = new Animal();
+        a.sound(); // เรียก method sound
+
+        // สร้าง object d ของ class Dog
+        Dog d = new Dog();
+        d.sound(); // เรียก method sound
+
+        // สร้าง object c ของ class Cat
+        Cat c = new Cat();
+        c.sound(); // เรียก method sound
+
+        // ตั้งค่าเป็น null เพื่อเรียก garbage collector
+        a = null;
+        d = null;
+        c = null;
+
+        // เรียก garbage collector (แนะนำให้ใช้ในกรณีทดสอบเท่านั้น)
+        System.gc(); 
+    }
+}
