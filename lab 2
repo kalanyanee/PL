@@ -1,0 +1,54 @@
+#lang racket/base
+
+;1
+(define pi 3.141592653589793)
+(define (sphere radius)
+  (* (/ 4 3) pi (expt radius 3)))
+(sphere 5)	
+
+;2
+(define (triangle width height)
+  (* 0.5 width height))
+(triangle 20 4)	
+
+;3
+(define (grade score)
+  (cond
+    [(< score 40) 'F]
+    [(and (>= score 40) (< score 80)) 'P]
+    [(>= score 80) 'G]))
+(grade 50)	
+
+;4
+(define (second n)
+  (modulo (quotient n 10) 10))
+(second 1234)
+
+;5
+(define (each n)
+  (if (= n 0)
+      1
+      (* (modulo n 10) (each (quotient n 10)))))
+(each 1234)	
+
+;โจทยเกี่ยวกับลิสต์
+;1
+(reverse (list 1 2 3 4))
+
+;2
+(require racket/list)
+(permutations '(1 2 3))
+
+;3
+(define (last lst)
+  (if (null? (cdr lst))
+      (car lst)
+      (last (cdr lst))))
+(last '(a b c d))
+
+;4
+(define (removelast lst)
+  (if (null? (cdr lst))
+      '()  ; ถ้าลิสต์ว่างหรือมีสมาชิกตัวเดียว
+      (cons (car lst) (removelast (cdr lst)))))
+(removelast '(a b c d))
